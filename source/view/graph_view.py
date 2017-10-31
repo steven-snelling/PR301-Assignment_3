@@ -1,9 +1,9 @@
-from view.i_graph_view import IGraphView
+from view.i_graph_view import Graph
 from plotly import *
 import plotly.graph_objs as ob
 
 
-class GraphView(IGraphView):
+class GraphView(Graph):
     def sales_by_gender_graph(self, data_arr):
         gender_data = []
         sales_data = []
