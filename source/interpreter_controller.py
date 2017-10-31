@@ -129,6 +129,7 @@ the saves folder in the program files. (object is serialized)
             '-c': AgeVerseSalaryGraph(),
             '-d': BmiPieGraph()
         }
+
         for key, value in option_dict.items():
             if options_arr[0] == key:
                 builder = value
