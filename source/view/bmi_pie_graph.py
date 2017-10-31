@@ -21,6 +21,7 @@ class BmiPieGraph(Graph):
                 obesity_count += 1
             if person[4] == "Underweight":
                 underweight_count += 1
+
         self.graph_data = {
             'data': [{'labels': ['Normal', 'Overweight', 'Obesity',
                                  'Underweight'],

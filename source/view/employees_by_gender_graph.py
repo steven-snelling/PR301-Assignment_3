@@ -1,6 +1,5 @@
 from view.i_graph_view import Graph
 from plotly import *
-import plotly.graph_objs as ob
 
 
 class EmployeesByGenderGraph(Graph):
