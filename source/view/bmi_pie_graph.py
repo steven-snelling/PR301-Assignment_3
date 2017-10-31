@@ -4,6 +4,9 @@ from plotly import *
 
 class BmiPieGraph(Graph):
 
+    def __init__(self):
+        self.graph_data = None
+
     def build_graph(self, data_arr):
         normal_count = 0
         obesity_count = 0
@@ -18,7 +21,7 @@ class BmiPieGraph(Graph):
                 obesity_count += 1
             if person[4] == "Underweight":
                 underweight_count += 1
-        graph_data = {
+        self.graph_data = {
             'data': [{'labels': ['Normal', 'Overweight', 'Obesity',
                                  'Underweight'],
                       'values': [normal_count, overweight_count,
@@ -27,8 +30,6 @@ class BmiPieGraph(Graph):
             'layout': {
                 'title': 'Staff by BMI'}
         }
-        self.show_graph(graph_data)
 
-    @staticmethod
-    def show_graph(graph_data):
-        offline.plot(graph_data)
+    def show_graph(self):
+        offline.plot(self.graph_data)

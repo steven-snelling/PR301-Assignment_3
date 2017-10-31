@@ -5,6 +5,9 @@ import plotly.graph_objs as ob
 
 class EmployeesByGenderGraph(Graph):
 
+    def __init__(self):
+        self.graph_data = None
+
     def build_graph(self, data_arr):
         male_count = 0
         female_count = 0
@@ -14,15 +17,13 @@ class EmployeesByGenderGraph(Graph):
             if person[1] == "F":
                 female_count += 1
 
-        graph_data = {
+        self.graph_data = {
             'data': [{'labels': ['Male', 'Female'],
                       'values': [male_count, female_count],
                       'type': 'pie'}],
             'layout': {
                 'title': 'Number of Employees by Gender'}
         }
-        self.show_graph(graph_data)
 
-    @staticmethod
-    def show_graph(graph_data):
-        offline.plot(graph_data)
+    def show_graph(self):
+        offline.plot(self.graph_data)

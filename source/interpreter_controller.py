@@ -1,5 +1,9 @@
 from cmd import Cmd
-
+from view.age_verse_salary_graph import AgeVerseSalaryGraph
+from view.bmi_pie_graph import BmiPieGraph
+from view.employees_by_gender_graph import EmployeesByGenderGraph
+from view.sales_by_gender_graph import SalesByGenderGraph
+from view.graph_view import GraphView
 
 class InterpreterController(Cmd):
     # Written By Thomas
@@ -9,7 +13,7 @@ class InterpreterController(Cmd):
     # links the model (interpreter) to the view  (GraphView)
     #
 
-    def __init__(self, in_view, in_graph_view, in_interpreter):
+    def __init__(self, in_view, in_interpreter):
         # Written By Thomas
         #
         # The InterpreterController Object is given a view and
@@ -22,7 +26,6 @@ class InterpreterController(Cmd):
         Cmd.__init__(self)
         self.prompt = '> '
         self.my_view = in_view
-        self.my_graph_view = in_graph_view
         self.my_interpreter = in_interpreter
 
     @staticmethod
@@ -109,7 +112,6 @@ the saves folder in the program files. (object is serialized)
         self.find_in_dict(options_arr, option_dict)
 
     def do_show(self, *args):
-        # Vaishali
         """
         ***
         OPTIONS
@@ -120,23 +122,19 @@ the saves folder in the program files. (object is serialized)
         ***
         """
 
-        # Written by Thomas
-        #
-        # This creates a dictionary mapping the options to the respective
-        # methods then because the commands are run differently the command is
-        # matched in the method then the value is launched in the view.
-        #
-        #
         options_arr = self.parse_args(args)
         option_dict = {
-            '-a': self.my_graph_view.sales_by_gender_graph,
-            '-b': self.my_graph_view.employees_by_gender_graph,
-            '-c': self.my_graph_view.age_verse_salary_graph,
-            '-d': self.my_graph_view.bmi_pie_graph
+            '-a': SalesByGenderGraph(),
+            '-b': EmployeesByGenderGraph(),
+            '-c': AgeVerseSalaryGraph(),
+            '-d': BmiPieGraph()
         }
         for key, value in option_dict.items():
             if options_arr[0] == key:
-                value(self.my_interpreter.get_data())
+                builder = value
+                director = GraphView(builder)
+                director.make_graph(self.my_interpreter.get_data())
+                builder.show_graph()
 
     @staticmethod
     def do_quit(arg):

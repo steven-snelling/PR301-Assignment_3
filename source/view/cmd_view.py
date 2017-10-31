@@ -21,3 +21,4 @@ class CmdView(ICmdView):
                        self.read("Enter your birthday, e.g. dd-mm-yyyy: ")]
         person_data_arr.append(person_data)
         return person_data_arr
+

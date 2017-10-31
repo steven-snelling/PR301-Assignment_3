@@ -5,6 +5,9 @@ import plotly.graph_objs as ob
 
 class AgeVerseSalaryGraph(Graph):
 
+    def __init__(self):
+        self.graph_data = None
+
     def build_graph(self, data_arr):
         age_data = []
         salary_data = []
@@ -29,9 +32,7 @@ class AgeVerseSalaryGraph(Graph):
                 title="Salary"
             )
         )
-        graph = ob.Figure(data=graph_data, layout=graph_format)
-        self.show_graph(graph)
+        self.graph_data = ob.Figure(data=graph_data, layout=graph_format)
 
-    @staticmethod
-    def show_graph(graph_data):
-        offline.plot(graph_data)
+    def show_graph(self):
+        offline.plot(self.graph_data)
