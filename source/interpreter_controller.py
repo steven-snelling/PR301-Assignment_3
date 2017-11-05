@@ -14,15 +14,6 @@ class InterpreterController(Cmd):
     #
 
     def __init__(self, in_view, in_interpreter):
-        # Written By Thomas
-        #
-        # The InterpreterController Object is given a view and
-        # an interpreter object and is assigned to the respective
-        # attribute in the controller object.
-        #
-        # The prompt for the cmd interface is also defined from here.
-        #
-        #
         Cmd.__init__(self)
         self.prompt = '> '
         self.my_view = in_view
@@ -30,19 +21,6 @@ class InterpreterController(Cmd):
 
     @staticmethod
     def check_set_file_path(running_args):
-        # Written By Thomas
-        #
-        # This is the part of the system that allows for command line arguments.
-        # The functionality provided here is the user is able to supply a default
-        # path to where they would like to store their files when they are saved.
-        #
-        # It is handled by taking the sys.argsv then checking if there
-        # was only onestring provided. then it checks if the path is accessible.
-        #
-        # If it is the default is set. otherwise it defaults to the main and
-        # continues working.
-        #
-
         if len(running_args) > 2:
             print("too many arguments supplied")
             return running_args[0]
@@ -59,7 +37,6 @@ class InterpreterController(Cmd):
             return running_args[0]
 
     def do_add(self, *args):
-        # Vaishali
         """
         ***
         OPTIONS
@@ -69,14 +46,7 @@ for the information in steps after entering this option.
             -d : This loads the information into the system from a database.
         ***
         """
-        # Written By Thomas
-        #
-        # This is the add command in the cmd. The dictionary maps
-        # options to their respective commands. When the command is invoked
-        # the dict is made then is sent to the find in dict to match the
-        # arguments with the dict options.
-        #
-        #
+
         options_arr = self.parse_args(args)
         option_dict = {
             '-l': self.my_interpreter.load_file,
@@ -86,7 +56,6 @@ for the information in steps after entering this option.
         self.find_in_dict(options_arr, option_dict)
 
     def do_save(self, *args):
-        # Vaishali
         """
         ***
         OPTIONS
@@ -96,13 +65,7 @@ the saves folder in the program files. (object is serialized)
                         -f : This saves a file to the specified file location.
         ***
         """
-        # Written by Thomas
-        #
-        # This creates a dictionary mapping the options to the respective
-        # methods then sends that information to the find in dict method
-        # for matching
-        #
-        #
+
         options_arr = self.parse_args(args)
         option_dict = {
             '-f': self.my_interpreter.save_file,
@@ -139,7 +102,6 @@ the saves folder in the program files. (object is serialized)
 
     @staticmethod
     def do_quit(arg):
-        # Steven
         """
         Closes the program
         """
@@ -153,15 +115,6 @@ the saves folder in the program files. (object is serialized)
 
     @staticmethod
     def parse_args(arg_str):
-        # Written by Thomas
-        #
-        # This method takes a argument string which is a string of options
-        # given to the interpreter after a command has been invoked. It
-        # then splits this string up everytime it finds a blank space.
-        #
-        # The resulting array is then returned to the calling function.
-        #
-        #
         try:
             arg_arr = None
             for arg in arg_str:
@@ -174,27 +127,9 @@ the saves folder in the program files. (object is serialized)
             return False
 
     def manual_add(self):
-        # Written By Thomas
-        #
-        # This simply invokes the manual data entry flow in the
-        # view then passes that information into the add manual
-        # data in the model.
-        #
-        #
         self.my_interpreter.add_manual_data(self.my_view.manual_person_flow())
 
     def find_in_dict(self, options_arr, options_dict):
-        # Written By Thomas
-        #
-        # This function is given an array of options and an option
-        # dictionary from the calling method. It then goes through
-        # the dictionary trying to match a given option with an
-        # existing command.
-        #
-        # When a matching is found the try_launch method is called
-        # which launches the value at the corresponding matched key.
-        #
-        #
         arg_found = False
         for key, value in options_dict.items():
             if options_arr[0] == key:
@@ -207,15 +142,6 @@ the saves folder in the program files. (object is serialized)
 
     @staticmethod
     def try_launch(key, value, options_arr):
-        # Written By Thomas
-        #
-        # Is given a matched option and key value pair.
-        # The key is checked to make sure it isnt -m because
-        # this acts differntly. if it is the value is ran on its own.
-        #
-        # if it isnt the options array needs to have exactly 2 items
-        # otherwise it will fail if it has 2 item the value is ran.
-        #
         if key == '-m':
             value()
             return True
