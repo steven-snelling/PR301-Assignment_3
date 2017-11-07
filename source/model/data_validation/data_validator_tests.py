@@ -12,7 +12,8 @@ class DataValidatorTests(unittest.TestCase):
     def setUp(self):
         # be executed before each test
         print("set up")
-        self.data_1 = [['H001', 'M', '16', '200', 'Normal', '230', '30-05-1999']]
+        self.data_1 = [['H001', 'M', '16', '200', 'Normal', '230',
+                        '30-05-1999']]
 
         self.data_2 = [['', '', '', '', '', '', '']]
 

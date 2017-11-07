@@ -11,43 +11,45 @@ class DatabaseTests(unittest.TestCase):
     def setUp(self):
         self.database_handler = Database()
         self.data = [['A001', 'F', '23', '456', 'Normal', '23', '30-5-1994'],
-                     ['C234', 'M', '5', '676', 'Overweight', '300', '1-12-1977'],
-                     ['C4', 'Male', 'nine', '66,8', 'heavy', '3,00', '1-12-19']]
+                     ['C234', 'M', '5', '676', 'Overweight', '300',
+                      '1-12-1977'],
+                     ['C4', 'Male', 'nine', '66,8', 'heavy', '3,00',
+                      '1-12-19']]
 
     def test_01(self):
         # Tries to get data from the default database
         # returns a blank list
-        self.assertIsInstance(self.database_handler.get_person_information(), list)
+        self.assertIsInstance(self.database_handler.get_person_information(),
+                              list)
 
     def test_02(self):
         # opens a new database then returns contents
         # returns a blank list
-        self.assertFalse(self.database_handler.get_person_information("test_db"))
+        self.assertFalse(
+            self.database_handler.get_person_information("test_db"))
 
     def test_03(self):
         # Grabs the information from an existing database
-        self.assertTrue(self.database_handler.get_person_information("../mydb"), "[['A001', 'F', 23"
-                                                                                 ", 456, 'Normal',"
-                                                                                 " 23, '30-5-1994'],"
-                                                                                 " ['C234', 'M', 40, "
-                                                                                 "676, 'Overweight', "
-                                                                                 "300, '1-12-1977'], "
-                                                                                 "['A001', 'F', 23, 456,"
-                                                                                 " 'Normal', 14, '30-5-1994'],"
-                                                                                 " ['C342', 'Male', 40, 676, "
-                                                                                 "'Overweight', 300, '1-12-1977']"
-                                                                                 ", ['D123', 'F', 55, 123, "
-                                                                                 "'Obesity', 32, '15-01-1997'],"
-                                                                                 " ['A001', 'F', 23, 456, 'Normal'"
-                                                                                 ", 23, '30-5-1994'], ['C234',"
-                                                                                 " 'M', 40, 676, 'Overweight', "
-                                                                                 "300, '1-12-1977'], ['A001',"
-                                                                                 " 'F', 23, 456, 'Normal', 14,"
-                                                                                 " '30-5-1994'], ['C342', 'Male',"
-                                                                                 " 40, 676, 'Overweight', 300, "
-                                                                                 "'1-12-1977'], ['D123', 'F', "
-                                                                                 "55, 123, 'Obesity', 32, "
-                                                                                 "'15-01-1997']]")
+        self.assertTrue(
+            self.database_handler.get_person_information("../mydb"),
+            "[['A001', 'F', 23" ", 456, 'Normal',"
+            " 23, '30-5-1994']," " ['C234', 'M', 40, "
+            "676, 'Overweight', " "300, '1-12-1977'], "
+            "['A001', 'F', 23, 456," " 'Normal', 14, '30-5-1994'],"
+            " ['C342', 'Male', 40, 676, " 
+            "'Overweight', 300, '1-12-1977']"
+            ", ['D123', 'F', 55, 123, " 
+            "'Obesity', 32, '15-01-1997'],"
+            " ['A001', 'F', 23, 456, 'Normal'"
+            ", 23, '30-5-1994'], ['C234',"
+            " 'M', 40, 676, 'Overweight', "
+            "300, '1-12-1977'], ['A001',"
+            " 'F', 23, 456, 'Normal', 14,"
+            " '30-5-1994'], ['C342', 'Male',"
+            " 40, 676, 'Overweight', 300, "
+            "'1-12-1977'], ['D123', 'F', "
+            "55, 123, 'Obesity', 32, "
+            "'15-01-1997']]")
 
     def test_04(self):
         # Try find a database that has the value 42

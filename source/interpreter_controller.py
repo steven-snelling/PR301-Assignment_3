@@ -5,13 +5,8 @@ from view.employees_by_gender_graph import EmployeesByGenderGraph
 from view.sales_by_gender_graph import SalesByGenderGraph
 from view.graph_view import GraphView
 
+
 class InterpreterController(Cmd):
-    # Written By Thomas
-    #
-    # This is the controller of the system. It defines what is to happen in the
-    # cmdloop and the commands that are accosiated with it. It also
-    # links the model (interpreter) to the view  (GraphView)
-    #
 
     def __init__(self, in_view, in_interpreter):
         Cmd.__init__(self)
@@ -40,10 +35,11 @@ class InterpreterController(Cmd):
         """
         ***
         OPTIONS
-            -l : This loads the information from a file. The file is given to the command as a string.
-            -m : This is for manual data entry. The user will be prompted \
+        -l : This loads the information from a file. The file is given to \
+the command as a string.
+        -m : This is for manual data entry. The user will be prompted \
 for the information in steps after entering this option.
-            -d : This loads the information into the system from a database.
+        -d : This loads the information into the system from a database.
         ***
         """
 
@@ -59,10 +55,10 @@ for the information in steps after entering this option.
         """
         ***
         OPTIONS
-                        -s : This is a standard save. The information is saved to a file in \
+        -s : This is a standard save. The information is saved \to a file in \
 the saves folder in the program files. (object is serialized)
-                        -d : This saves the current information to the database.
-                        -f : This saves a file to the specified file location.
+        -d : This saves the current information to the database.
+        -f : This saves a file to the specified file location.
         ***
         """
 
@@ -78,10 +74,12 @@ the saves folder in the program files. (object is serialized)
         """
         ***
         OPTIONS
-                    -a : Shows a bar graph of the total sales made by males verse the total sales made by female.
-                    -b : Shows a pie chart of the percentage of female workers verse male workers
-                    -c : Shows a scatter plot graph of peoples age verse their salary.
-                    -d : Shows a pie chart of the BMI of a set of people.
+        -a : Shows a bar graph of the total sales made by males verse \
+the total sales made by female.
+        -b : Shows a pie chart of the percentage of female workers verse \
+ male workers
+        -c : Shows a scatter plot graph of peoples age verse their salary.
+        -d : Shows a pie chart of the BMI of a set of people.
         ***
         """
 
