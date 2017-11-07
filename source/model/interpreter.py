@@ -1,3 +1,6 @@
+from model.file_handler.shelve_file import ShelveFile
+from model.file_handler.csv_file import CSVFile
+
 
 class Interpreter:
     # Written By Thomas
@@ -6,12 +9,11 @@ class Interpreter:
     # Handles flow of data from the various modules and into the view.
     #
     #
-    def __init__(self, in_validator, in_file_handler,
+    def __init__(self, in_validator,
                  in_database_handler, in_file_path):
 
         self.data_arr = []
         self.my_validator = in_validator
-        self.file_handler = in_file_handler
         self.database_handler = in_database_handler
         self.default_file_path = in_file_path
 
@@ -19,34 +21,22 @@ class Interpreter:
         return self.data_arr
 
     def serialize_data_arr(self, args=''):
-        try:
-            if args == '':
-                self.file_handler.shelve_file(self.data_arr,
-                                              self.default_file_path)
-            else:
-                self.file_handler.shelve_file(self.data_arr, args)
-
-        except OSError:
-            print(OSError)
-            return False
+        if args == '':
+            ShelveFile().save_file(self.data_arr, self.default_file_path)
+        else:
+            ShelveFile().save_file(self.data_arr, args)
 
     def save_file(self, args=''):
-        try:
-            if args == '':
-                self.file_handler.save_file(self.data_arr,
-                                            self.default_file_path)
-            else:
-                self.file_handler.save_file(self.data_arr, args)
-
-        except OSError as erro:
-            print(erro)
-            return False
+        if args == '':
+            CSVFile().save_file(self.data_arr, self.default_file_path)
+        else:
+            CSVFile().save_file(self.data_arr, args)
 
     def save_database(self, database_name='mydb'):
         self.database_handler.save_data(self.data_arr, database_name)
 
     def load_file(self, file_path):
-        self.set_data_arr(self.file_handler.load_file(file_path))
+        self.set_data_arr(CSVFile().load_file(file_path))
 
     def load_database(self, database_name='mydb'):
         self.set_data_arr(self.database_handler.get_person_information
